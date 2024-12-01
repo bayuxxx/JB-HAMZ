@@ -1,0 +1,142 @@
+/* Wrapper untuk seluruh halaman */
+.acc-list-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.custom-divider {
+  margin: 10px 0;
+  border-top: 1px solid #ccc;
+}
+
+
+/* Judul halaman */
+.page-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Tombol kategori */
+.category-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.category-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  background-color: #fff;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.category-button.active {
+  background-color: #6200ea;
+  color: #fff;
+  border-color: #6200ea;
+}
+
+.category-button:hover {
+  background-color: #6200ea;
+  color: #fff;
+  border-color: #6200ea;
+}
+
+/* Grid untuk card */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Style untuk masing-masing card */
+.card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-container {
+  overflow: hidden;
+  height: 200px;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.1);
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.card-price {
+  font-size: 1.1rem;
+  color: #6200ea;
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Responsif untuk mobile */
+@media (max-width: 768px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .category-button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .category-button {
+    font-size: 0.8rem;
+    padding: 6px 12px;
+  }
+}
