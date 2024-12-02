@@ -140,3 +140,51 @@
     padding: 6px 12px;
   }
 }
+
+
+.payment-card-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
+}
+
+.payment-card-container::-webkit-scrollbar {
+  display: none; /* Sembunyikan scrollbar untuk browser berbasis Webkit */
+}
+
+.payment-card-container {
+  -ms-overflow-style: none;  /* Untuk Internet Explorer dan Edge */
+  scrollbar-width: none;    /* Untuk Firefox */
+}
+
+.payment-card {
+  width: 91px;
+  height: 91px;
+  /* padding: 10px; */
+  text-align: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.payment-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.payment-card p {
+  margin: 0;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.payment-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+

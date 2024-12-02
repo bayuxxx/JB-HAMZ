@@ -3,6 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Swal from "sweetalert2";
 import items from "../../data/dataAcc";
 import "./AccList.css";
+import dana from './DANA.png';
+import bca from './BCA.png';
+import mandiri from './Mandiri.png';
+
+
 
 const AccList = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -43,13 +48,13 @@ const AccList = () => {
       title: item.title,
       html: `
         <div style="text-align: left;">
-        <div class="custom-divider"></div> <!-- Divider div -->
+          <div class="custom-divider"></div>
           <img src="${item.image}" alt="${item.title}" style="width: 100%; margin-bottom: 10px; border-radius: 8px;"/>
-          <div class="custom-divider"></div> <!-- Divider div -->
+          <div class="custom-divider"></div>
           <p><strong>Harga:</strong> ${item.price}</p>
-          <div class="custom-divider"></div> <!-- Divider div -->
+          <div class="custom-divider"></div>
           <p>${item.description}</p>
-          <div class="custom-divider"></div> <!-- Divider div -->
+          <div class="custom-divider"></div>
         </div>
       `,
       showCloseButton: true,
@@ -62,14 +67,45 @@ const AccList = () => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          "Berhasil!",
-          "Barang telah ditambahkan ke keranjang.",
-          "success"
-        );
+        Swal.fire({
+          title: "Pilih Metode Pembayaran",
+          html: `
+            <div class="payment-card-container">
+              <div class="payment-card" data-payment="DANA">
+                <img src="${dana}" alt="DANA" />
+              </div>
+              <div class="payment-card" data-payment="BCA">
+                <img src="${bca}" alt="BCA" />
+              </div>
+              <div class="payment-card" data-payment="Mandiri">
+                <img src="${mandiri}" alt="Mandiri" />
+              </div>
+            </div>
+          `,
+          showCancelButton: true,
+          cancelButtonText: "Batal",
+          showConfirmButton: false,
+          didOpen: () => {
+            document.querySelectorAll(".payment-card").forEach((card) => {
+              card.addEventListener("click", () => {
+                const selectedPayment = card.getAttribute("data-payment");
+                const whatsappNumber = "628986648730"; // Nomor WhatsApp tujuan
+                const message = `Halo, saya tertarik membeli akun berikut:\n\nNama: ${item.title}\nHarga: ${item.price}\nDeskripsi: ${item.description}\n\nMetode Pembayaran: ${selectedPayment}`;
+                const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+  
+                Swal.close(); // Tutup dialog
+                window.open(whatsappUrl, "_blank"); // Membuka WhatsApp di tab baru
+              });
+            });
+          },
+        });
       }
     });
   };
+  
+  
+  
+  
 
   return (
     <div className="acc-list-container">
