@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import MidmanServicePage from '../components/MidmanCard/MidmanCard';
-
+import Footer from '../components/footer';
 const Midman = () => {
   const containerVariants = {
     hidden: { opacity: 0, y: 50 },
@@ -9,6 +9,7 @@ const Midman = () => {
   };
 
   return (
+    <div>
     <motion.div
       className="container"
       initial="hidden"
@@ -17,6 +18,8 @@ const Midman = () => {
     >
       <MidmanServicePage />
     </motion.div>
+    <Footer />
+    </div>
   );
 };
 

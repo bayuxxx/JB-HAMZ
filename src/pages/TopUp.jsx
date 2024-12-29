@@ -1,11 +1,13 @@
 import React from 'react';
 import TopupCard from '../components/TopUpCard/TopUpCard';
 import { motion } from 'framer-motion'; // Import framer-motion
+import Footer from '../components/footer';
 
 const TopUp = () => {
   return (
+    <div>
     <motion.div
-      className="container"
+      className="container mb-5"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: 'easeOut' }}
@@ -32,6 +34,8 @@ const TopUp = () => {
         <TopupCard />
       </motion.div>
     </motion.div>
+    <Footer />
+    </div>
   );
 };
 

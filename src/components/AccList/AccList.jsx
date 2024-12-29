@@ -19,29 +19,27 @@ const AccList = () => {
       ? items
       : items.filter((item) => item.category === selectedCategory);
 
-  const cardVariants = {
-    hidden: { opacity: 0, scale: 0.9, y: 20 },
-    visible: (index) => ({
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      transition: {
-        delay: index * 0.1,
-        duration: 0.5,
-        type: "spring",
-        stiffness: 100,
-      },
-    }),
-    hover: {
-      scale: 1.05,
-      boxShadow: "0 10px 20px rgba(0,0,0,0.12)",
-      transition: {
-        duration: 0.3,
-        type: "spring",
-        stiffness: 300,
-      },
-    },
-  };
+      const cardVariants = {
+        hidden: { opacity: 0, y: 10 },
+        visible: (index) => ({
+          opacity: 1,
+          y: 0,
+          transition: {
+            delay: index * 0.05, // Kurangi delay untuk lebih ringan
+            duration: 0.3, // Kurangi durasi animasi
+            type: "spring",
+            stiffness: 50, // Kurangi stiffness
+          },
+        }),
+        hover: {
+          scale: 1.02, // Kurangi efek skala pada hover
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)", // Kurangi intensitas shadow
+          transition: {
+            duration: 0.2, // Kurangi durasi hover
+          },
+        },
+      };
+      
 
   const showModal = (item) => {
     Swal.fire({

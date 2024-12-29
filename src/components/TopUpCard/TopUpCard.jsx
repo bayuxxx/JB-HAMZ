@@ -10,7 +10,6 @@ const TopupCard = () => {
   const [diamondAmount, setDiamondAmount] = useState('');
   const [price, setPrice] = useState('');
   const [game, setGame] = useState('');
-  const [selectedPayment, setSelectedPayment] = useState('');
 
   const diamondOptions = [
     { amount: 100, price: 'Rp 20.000' },
@@ -23,20 +22,14 @@ const TopupCard = () => {
     { amount: 10000, price: 'Rp 1.200.000' },
   ];
 
-  const paymentOptions = [
-    { image: dana, name: 'DANA' },
-    { image: bca, name: 'BCA' },
-    { image: mandiri, name: 'Mandiri' },
-  ];
-
   const handleDiamondSelect = (amount, price) => {
     setDiamondAmount(amount);
     setPrice(price);
   };
 
   const handleSubmit = () => {
-    if (userId && diamondAmount && price && game && selectedPayment) {
-      const message = `Halo, saya ingin top-up ${game} dengan ID ${userId}. Jumlah Diamond: ${diamondAmount}, Harga: ${price}, Metode Pembayaran: ${selectedPayment}.`;
+    if (userId && diamondAmount && price && game) {
+      const message = `Halo, saya ingin top-up ${game} dengan ID ${userId}. Jumlah Diamond: ${diamondAmount}, Harga: ${price}.`;
       const waLink = `https://wa.me/628986648730?text=${encodeURIComponent(message)}`;
       window.open(waLink, '_blank');
     } else {
@@ -48,6 +41,7 @@ const TopupCard = () => {
     <div style={styles.topupCard}>
       <h2>{game || 'Pilih Game'}</h2>
 
+      {/* Dropdown untuk memilih game */}
       <select value={game} onChange={(e) => setGame(e.target.value)} style={styles.select}>
         <option value="">Pilih Game</option>
         <option value="Free Fire">Free Fire</option>
@@ -100,22 +94,13 @@ const TopupCard = () => {
         </motion.div>
       </div>
 
-      <div style={styles.paymentOptions}>
-        <h3>Pilih Metode Pembayaran:</h3>
-        <div style={styles.cardContainer}>
-          {paymentOptions.map((option, index) => (
-            <div
-              key={index}
-              style={{
-                ...styles.paymentCard,
-                border: selectedPayment === option.name ? '2px solid #2196F3' : '1px solid #ccc',
-              }}
-              onClick={() => setSelectedPayment(option.name)}
-            >
-              <img src={option.image} alt={option.name} style={styles.paymentImage} />
-            </div>
-          ))}
-        </div>
+      <div style={styles.topupInfo}>
+        {diamondAmount && (
+          <>
+            <p>Jumlah Diamond: {diamondAmount}</p>
+            <p>Harga: {price}</p>
+          </>
+        )}
       </div>
 
       <motion.button
@@ -191,22 +176,8 @@ const styles = {
     color: '#2196F3',
     fontWeight: 'bold',
   },
-  paymentOptions: {
-    marginTop: '20px',
-  },
-  paymentCard: {
-    border : '1px solid black',
-    height : '91px',
-    width : '91px',
-    textAlign: 'center',
-    borderRadius: '8px',
-    cursor: 'pointer',
-    backgroundColor: '#f9f9f9',
-    transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-  },
-  paymentImage: {
-    width: '91px',
-    height: '91px',
+  topupInfo: {
+    marginTop: '15px',
   },
   submitButton: {
     padding: '10px 20px',

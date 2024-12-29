@@ -8,6 +8,8 @@ import JBAkun from './pages/JBAkun';
 import Midman from './pages/Midman';
 import TopUp from './pages/TopUp';
 import AmankanAkun from './pages/AmankanAkun';
+import 'bootstrap-icons/font/bootstrap-icons.css';
+
 const App = () => {
   return (
     <Router>
